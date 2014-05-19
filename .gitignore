@@ -1,1 +1,5 @@
+# Mac OS X System
+.DS_Store
+
+# ignore cocos2d-x engine folder
 cocos2d-x
