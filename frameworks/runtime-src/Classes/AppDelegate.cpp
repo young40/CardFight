@@ -23,11 +23,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if(!glview) {
-		glview = GLView::createWithRect("CardFight", Rect(0,0,900,640));
+		glview = GLView::createWithRect("CardFight", Rect(0,0,320,568));
 		director->setOpenGLView(glview);
 	}
 
-    glview->setDesignResolutionSize(480, 320, ResolutionPolicy::NO_BORDER);
+    glview->setDesignResolutionSize(640, 1136, ResolutionPolicy::NO_BORDER);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -38,7 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	auto engine = LuaEngine::getInstance();
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);
-	engine->executeScriptFile("src/main.lua");
+	engine->executeScriptFile("src/Register.lua");
 
     return true;
 }
