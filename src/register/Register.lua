@@ -1,6 +1,7 @@
 module ("Register",package.seeall)
 
 local user = require "src.data.User"
+local currentUser = require "src.data.CurrentUser"
 
 local registerUI = nil
 local visibleSize = cc.Director:getInstance():getVisibleSize()
@@ -24,12 +25,14 @@ function tapLoginButton(sender,eventType)
 	if eventType == ccui.TouchEventType.began and userNameText:getStringValue()~= "" then
 		--写入到json文件
 		local userId = user.reg(userNameText:getStringValue())
+		currentUser.setCurrentId(userId)
 	end
 end
 
 function tapLoginHistory(sender,eventType)
 	if eventType == ccui.TouchEventType.began and sender:isVisible() then
 		local userId = user.reg(sender:getTitleText())
+		currentUser.setCurrentId(userId)
 	end
 end
 
@@ -63,9 +66,15 @@ end
 
 function reloadLua(sender,eventType)
 	if eventType == ccui.TouchEventType.began then
-		
-		package.loaded["src.register.Register.lua"] = nil  
-    	require("src.register.Register.lua")
+		local freshScriptPath = 
+		{
+			"src.register.Register.lua",
+		}
+
+		for _,path in pairs(freshScriptPath) do
+			package.loaded[path] = nil  
+    		require(path)
+    	end
     	
 	end
 end
