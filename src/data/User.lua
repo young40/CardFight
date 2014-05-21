@@ -18,6 +18,18 @@ function getUserList()
     return _getUserListFileObject()
 end
 
+function getUserById(id)
+    local users = getUserList()
+
+    for i=1, #(users) do
+        local user = users[i]
+        if user["id"] == id then
+           return user
+        end
+    end
+
+    return {}
+end
 
 function _getUserListFile()
     return cc.FileUtils:getInstance():getWritablePath() .. filenameUserList;
