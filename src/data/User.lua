@@ -1,6 +1,6 @@
 module("src.data.User", package.seeall)
 
-local JSON = (loadfile "src/data/JSON.lua")()
+local JSON = require "src.data.JSON"
 
 local filenameUserList = "userlist.json"
 
