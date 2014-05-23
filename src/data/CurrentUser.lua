@@ -2,6 +2,7 @@ module("src.data.CurrentUser", package.seeall)
 
 local userlist = require "src.data.User"
 local JSON = require "src.data.JSON"
+local CARD = require "src.data.Card"
 
 local filenameUserCurrent = "usercurrent.json"
 
@@ -61,6 +62,14 @@ function setLevel(value)
     _setData("level", value)
 end
 
+function getCardList()
+    return getData()["cards"]
+end
+
+function getFighters()
+    return getData()["fighter"]
+end
+
 function _getNewUser()
     local user = userlist.getUserById(getCurrentId())
     
@@ -71,6 +80,13 @@ function _getNewUser()
     data["avatar"]  = "avatar.png" 
     data["gold"]    = 100
     data["level"]   = 1
+
+    local cards = CARD.cardsForNewUser()
+    data["cards"]   = cards
+
+    local fighter = {}
+    fighter[#fighter + 1] = cards[1]
+    data["fighter"] = fighter
 
     return data
 end

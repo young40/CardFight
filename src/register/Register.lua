@@ -65,10 +65,25 @@ function creatReloadLuaButton()
 end
 
 function reloadLua(sender,eventType)
+    if cc.Application:getInstance():getTargetPlatform() == cc.PLATFORM_OS_MAC then
+        local _f = cc.FileUtils:getInstance():fullPathForFilename("json.lua")
+
+        local f = io.popen("dirname " .. _f, "r")
+        local _target = f:read('*a')
+        f:close()
+        _target = string.gsub(_target, "\n", "")
+    
+        local _cmd = "cp -R " .. _target .. "/../../../../../src " .. _target
+        os.execute(_cmd)
+    end
+
 	if eventType == ccui.TouchEventType.began then
 		local freshScriptPath = 
 		{
-			"src.register.Register.lua",
+	    		"src.register.Register.lua",
+	    		"src.data.CurrentUser.lua",
+	    		"src.data.User.lua",
+	    		"src.data.Card.lua",
 		}
 
 		for _,path in pairs(freshScriptPath) do
@@ -86,6 +101,9 @@ function creatLayerRegister()
 	registerUI = ccs.GUIReader:getInstance():widgetFromJsonFile("res/RegisterUI_1/RegisterUI_1.json")
 	local loginButton = registerUI:getChildByTag(4)
 	loginButton:addTouchEventListener(tapLoginButton)
+
+--    local id = user.reg("xxx" .. os.time())
+--    currentUser.setCurrentId(id)
 
 	-- 显示登录历史列表
 	showUserLoginHistory()
