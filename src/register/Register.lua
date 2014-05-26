@@ -102,8 +102,9 @@ function creatLayerRegister()
 	local loginButton = registerUI:getChildByTag(4)
 	loginButton:addTouchEventListener(tapLoginButton)
 
---    local id = user.reg("xxx" .. os.time())
---    currentUser.setCurrentId(id)
+    --local id = user.reg("xxx" .. os.time())
+    --currentUser.setCurrentId(id)
+    --currentUser.setFighters({currentUser.getCardList()[1]["id"]})
 
 	-- 显示登录历史列表
 	showUserLoginHistory()

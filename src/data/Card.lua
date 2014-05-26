@@ -5,11 +5,21 @@ local JSON = require "src.data.JSON"
 function cardsForNewUser()
     local cards = {}
 
-    --    cards[#cards + 1] = _getNewCard(0)
+    cards[#cards + 1] = _getNewCard(0)
 
-    print(JSON:encode_pretty(cards))
+--    print(JSON:encode_pretty(cards))
 
     return cards
+end
+
+function getCardById(list, id)
+    for key, card in ipairs(list) do
+        if card["id"] == id then
+            return card
+        end
+    end
+
+    return nil
 end
 
 function _getCardDatabase()

@@ -70,6 +70,25 @@ function getFighters()
     return getData()["fighter"]
 end
 
+function setFighters(ids)
+    local fighters = {}
+
+    for key, id in ipairs(ids) do
+        local fighter = CARD.getCardById(getCardList(), id)
+        if fighter then
+            fighters[#fighters + 1] = fighter
+        end
+    end
+
+    if #fighters == 0 then
+        return false
+    end
+
+    _setData("fighter", fighters)
+
+    return true
+end
+
 function _getNewUser()
     local user = userlist.getUserById(getCurrentId())
     
