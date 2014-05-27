@@ -67,26 +67,58 @@ function getCardList()
 end
 
 function getFighters()
-    return getData()["fighter"]
-end
+    local cards =  {}
 
-function setFighters(ids)
-    local fighters = {}
-
-    for key, id in ipairs(ids) do
-        local fighter = CARD.getCardById(getCardList(), id)
-        if fighter then
-            fighters[#fighters + 1] = fighter
+    for key, card in ipairs(getCardList()) do
+        for key_, id in ipairs(getData()["fighter"]) do
+            if card["id"] == id then
+                cards[#cards + 1] = card
+            end
         end
     end
 
-    if #fighters == 0 then
+    return cards
+end
+
+function setFighters(ids)
+    local fIds = {}
+
+    for key, id in ipairs(ids) do
+        local card = CARD.getCardById(getCardList(), id)
+        if (card) then
+            fIds[#fIds + 1] = id
+        end
+    end
+
+    if #fIds == 0 then
         return false
     end
 
-    _setData("fighter", fighters)
+    local cards = {}
+    for key, card in ipairs(getCardList()) do
+        CARD.setCardAsFighter(card, false)
+
+        for key_, id in ipairs(fIds) do 
+            if (card["id"] == id) then
+                CARD.setCardAsFighter(card, true)
+            end
+        end
+
+        cards[#cards + 1] = card
+    end
+    
+    _setData("fighter", fIds)
+    _setData("cards", cards)
 
     return true
+end
+
+function getNewCard()
+    local cards = getCardList()
+
+    cards[#cards + 1] = CARD.getNewCard()
+    
+    _setData("cards", cards)
 end
 
 function _getNewUser()
@@ -113,7 +145,7 @@ end
 function _setData(key, value)
     local data = getData()
     data[key] = value
-    print(JSON:encode_pretty(data))
+    --print(JSON:encode_pretty(data))
     _updateUserDataFile(data)
 end
 
