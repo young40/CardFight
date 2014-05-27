@@ -6,9 +6,21 @@ local visibleSize = cc.Director:getInstance():getVisibleSize()
 local origin = cc.Director:getInstance():getVisibleOrigin()
 local selectCardUI = nil
 local listSelectView = nil
+local warningLabel = nil
+local scriptHandle = nil
+local disWarningFlag = true
 
 function tapConfirmButton(sender,eventType)
 	if eventType == ccui.TouchEventType.began then
+		local fighterCars = {}
+		local cardScrolls = listSelectView:getItems()
+		for _,item in pairs(cardScrolls) do
+			if item:getChildByTag(11):getSelectedState() == true then
+				fighterCars[#fighterCars+1] = item.id
+			end
+		end
+		currentUser.setFighters(fighterCars)
+
 		sceneControl.changeToScene("HomePage")
 	end
 end
@@ -19,10 +31,27 @@ function touchListViewEvent(sender, eventType)
     end
 end
 
+function disWarning()
+	warningLabel:setText("")
+	cc.Director:getInstance():getScheduler():unscheduleScriptEntry(scriptHandle)
+	disWarningFlag = true
+end
+
 function selectedEvent(sender,eventType)
     if eventType == ccui.CheckBoxEventType.selected then
-        --self._displayValueLabel:setText("Selected")
-        --cclog("%d",sender.id)
+       local cardScrolls,flag = listSelectView:getItems(),0
+		for _,item in pairs(cardScrolls) do
+			if item:getChildByTag(11):getSelectedState() == true then
+				flag = flag + 1
+			end
+		end
+		if flag >3 then
+			sender:setSelectedState(false)
+			warningLabel = selectCardUI:getChildByTag(4)
+			warningLabel:setText("选择卡牌超过最大数！")
+			scriptHandle = cc.Director:getInstance():getScheduler():scheduleScriptFunc(disWarning, 0.5, false)
+			disWarningFlag = false
+		end
     elseif eventType == ccui.CheckBoxEventType.unselected then
         --self._displayValueLabel:setText("Unselected")
     end
@@ -44,7 +73,7 @@ function addSelectCard(texture,power,cpu,name,star,selected,id)
 	starValue:setText(star)
 	checkBox:setSelectedState(selected)
 	checkBox:addEventListenerCheckBox(selectedEvent)
-	checkBox.id = id
+	selectCardCellUI.id = id
 
     listSelectView:pushBackCustomItem(selectCardCellUI) 
 end
@@ -91,7 +120,7 @@ function creatLayerSelectCard()
 	local cardList = currentUser.getCardList()
 	if cardList ~= nil then
 		for _,card in pairs(cardList) do
-		--addSelectCard(cardList["icon_image"],cardList["life"],cardList["attack"],cardList["name"],cardList["star"],false,cardList["id"])
+		--addSelectCard(card["icon_image"],card["life"],card["attack"],card["name"],card["star"],card["fighter"],card["id"])
 	end
 	end
 
