@@ -90,7 +90,7 @@ function reloadLua(sender,eventType)
 			package.loaded[path] = nil  
     		require(path)
     	end
-    	
+
 	end
 end
 --------------------------------重新加载脚本函数，测试使用，发布版本删除-----------------------------------------
@@ -102,9 +102,16 @@ function creatLayerRegister()
 	local loginButton = registerUI:getChildByTag(4)
 	loginButton:addTouchEventListener(tapLoginButton)
 
+    --[[
     --local id = user.reg("xxx" .. os.time())
-    --currentUser.setCurrentId(id)
-    --currentUser.setFighters({currentUser.getCardList()[1]["id"]})
+    local id = user.reg("usr1111")
+    currentUser.setCurrentId(id)
+    --currentUser.getNewCard()
+    local ids = {currentUser.getCardList()[2]["id"], currentUser.getCardList()[4]["id"], currentUser.getCardList()[5]["id"]}
+    --currentUser.setFighters(ids)
+    local oo = currentUser.getFighters() 
+    print("----------+++++++++++------")
+    --]]
 
 	-- 显示登录历史列表
 	showUserLoginHistory()

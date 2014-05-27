@@ -5,8 +5,11 @@ local JSON = require "src.data.JSON"
 function cardsForNewUser()
     local cards = {}
 
-    cards[#cards + 1] = _getNewCard(0)
+    local card = _getNewCard(0)
 
+    setCardAsFighter(card, true)
+
+    cards[#cards + 1] = card
 --    print(JSON:encode_pretty(cards))
 
     return cards
@@ -20,6 +23,15 @@ function getCardById(list, id)
     end
 
     return nil
+end
+
+function setCardAsFighter(card, flag)
+    card["fighter"] = flag
+    return card
+end
+
+function getNewCard()
+    return _getNewCard(0)
 end
 
 function _getCardDatabase()
@@ -38,6 +50,7 @@ function _getNewCard(id_offset)
     local id = id_offset + os.time() - 1400000000;
 
     data["id"] = id
+    data["fighter"] = false
 
     return data
 end
