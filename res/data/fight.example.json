@@ -1,0 +1,111 @@
+{
+    "isWin": true,
+    "final": false,
+    "level": 2,
+    "round": 1,
+    "cards": [
+    {
+        "position": 1,
+        "name":"大米",
+        "level":1,
+        "star":1,
+        "attack":100,
+        "life":1000,
+        "big_image":"null",
+        "icon_image":"null",
+        "description":"大米手机"
+    },
+    {
+        "position": 2,
+        "name":"大米",
+        "level":1,
+        "star":1,
+        "attack":100,
+        "life":1000,
+        "big_image":"null",
+        "icon_image":"null",
+        "description":"大米手机"
+    },
+    {
+        "position": 4,
+        "name":"大米",
+        "level":1,
+        "star":1,
+        "attack":100,
+        "life":1000,
+        "big_image":"null",
+        "icon_image":"null",
+        "description":"大米手机"
+    },
+    {
+        "position": 6,
+        "name":"大米",
+        "level":1,
+        "star":1,
+        "attack":100,
+        "life":1000,
+        "big_image":"null",
+        "icon_image":"null",
+        "description":"大米手机"
+    }
+        ],
+    "bouts": [
+    {
+        "attacker": 1,
+        "final": false,
+        "targets": [
+        {
+            "position": 4,
+            "effect": 100,
+            "life": 900
+        },
+        {
+            "position": 4,
+            "effect": 100,
+            "life": 900
+        }
+            ]
+    },
+    {
+        "attacker": 2,
+        "final": true,
+        "targets": [
+        {
+            "position": 4,
+            "effect": 100,
+            "life": 900
+        },
+        {
+            "position": 4,
+            "effect": 100,
+            "life": 900
+        }
+            ]
+    }
+        ]
+    "award": {
+        "gold": 100,
+        "cards": [
+        {
+            "name":"大米",
+            "level":1,
+            "star":1,
+            "attack":100,
+            "life":1000,
+            "big_image":"null",
+            "icon_image":"null",
+            "description":"大米手机"
+        },
+        {
+            "name":"大米",
+            "level":1,
+            "star":1,
+            "attack":100,
+            "life":1000,
+            "big_image":"null",
+            "icon_image":"null",
+            "description":"大米手机"
+        }
+           ]
+    }
+}
