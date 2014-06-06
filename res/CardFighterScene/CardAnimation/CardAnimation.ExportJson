@@ -7,27 +7,6 @@
       "name": "CardAnimation",
       "bone_data": [
         {
-          "name": "Effect",
-          "parent": "",
-          "dI": 0,
-          "x": 6.0,
-          "y": 174.67333984375,
-          "z": 2,
-          "cX": 1.0,
-          "cY": 1.0,
-          "kX": 0.0,
-          "kY": 0.0,
-          "arrow_x": 0.0,
-          "arrow_y": 0.0,
-          "effectbyskeleton": false,
-          "display_data": [
-            {
-              "plist": "blood.plist",
-              "displayType": 2
-            }
-          ]
-        },
-        {
           "name": "Card",
           "parent": "",
           "dI": 0,
@@ -36,8 +15,8 @@
           "z": 1,
           "cX": 1.0,
           "cY": 1.0,
-          "kX": -1.57788837,
-          "kY": 1.57788837,
+          "kX": -1.57569492,
+          "kY": 1.57569492,
           "arrow_x": 141.00352478027344,
           "arrow_y": -3.8642720028292388E-05,
           "effectbyskeleton": true,
@@ -53,6 +32,58 @@
                   "cY": 1.0,
                   "kX": 1.57788837,
                   "kY": -1.57788837
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Effect",
+          "parent": "Card",
+          "dI": -1,
+          "x": 86.002655029296875,
+          "y": -0.52304935455322266,
+          "z": 3,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 6.275175,
+          "kY": -6.275175,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "plist": "blood.plist",
+              "displayType": 2
+            }
+          ]
+        },
+        {
+          "name": "Blood",
+          "parent": "",
+          "dI": 0,
+          "x": -93.0,
+          "y": 138.67335510253906,
+          "z": 2,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "LifeValue.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 1.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
                 }
               ]
             }
@@ -81,7 +112,7 @@
                 {
                   "dI": -1000,
                   "x": 0.0,
-                  "y": -39.0,
+                  "y": 0.0,
                   "z": 0,
                   "cX": 1.0,
                   "cY": 1.0,
@@ -89,12 +120,31 @@
                   "kY": 0.0,
                   "fi": 0,
                   "twE": 0,
-                  "tweenFrame": true
+                  "tweenFrame": true,
+                  "color": {
+                    "a": 0,
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                  }
                 },
                 {
                   "dI": 0,
                   "x": 0.0,
-                  "y": -39.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
                   "z": 0,
                   "cX": 1.0,
                   "cY": 1.0,
@@ -161,7 +211,65 @@
                   "fi": 30,
                   "twE": 0,
                   "tweenFrame": true,
-                  "evt": "end"
+                  "evt": "ActionEnd"
+                }
+              ]
+            },
+            {
+              "name": "Blood",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": -29.0,
+                  "y": -30.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.2617994,
+                  "kY": 0.2617994,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 39.0,
+                  "y": 22.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.2617994,
+                  "kY": -0.2617994,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 30,
+                  "twE": 0,
+                  "tweenFrame": true
                 }
               ]
             }
@@ -169,7 +277,7 @@
         },
         {
           "name": "stop",
-          "dr": 0,
+          "dr": 1,
           "lp": false,
           "to": 0,
           "drTW": 0,
@@ -178,6 +286,25 @@
           "mov_bone_data": [
             {
               "name": "Card",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true
+                }
+              ]
+            },
+            {
+              "name": "Blood",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -206,6 +333,14 @@
       "width": 212.0,
       "height": 294.0,
       "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "LifeValue",
+      "width": 200.0,
+      "height": 20.0,
+      "pX": 0.0,
       "pY": 0.5,
       "plistFile": ""
     }

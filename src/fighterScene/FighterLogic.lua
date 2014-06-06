@@ -30,15 +30,39 @@ function onFrameEvent( bone,evt,originFrameIndex,currentFrameIndex)
 
  	if myFightTime then
 		currentMy:runAction(sequece)
-		currentMy:getParent():getParent():reorderChild(currentMy:getParent(),1)
+
+		--计算伤害血量值，更新相关数据
+		local otherBlood = currentOther.dynamicBlood - currentMy.cardInfo.attack
+		if otherBlood <= 0 then
+			currentOther:setVisible(false)
+		else
+			local currentScale = currentOther:getBone("Blood"):getScaleX()
+			local subScale = currentScale - ((currentMy.cardInfo.attack)/(currentOther.cardInfo.blood))
+			currentOther:getBone("Blood"):setScaleX(subScale)
+            currentOther:getAnimation():play("stop")
+			currentOther.dynamicBlood = currentOther.dynamicBlood - currentMy.cardInfo.attack
+		end
+
 		--如果我方卡牌全部出战一次，则置myFightTime为false，myFightNum重新归为1
 		if myFightNum > table.getn(tempMyFighters) then
  			myFightTime = false
  			myFightNum = 1
  		end
-	elseif not  myFightTime then
+	elseif not myFightTime then
 		currentOther:runAction(sequece)
-		currentOther:getParent():getParent():reorderChild(currentOther:getParent(),1)
+
+		--计算伤害血量值，更新相关数据
+		local myBlood = currentMy.dynamicBlood - currentOther.cardInfo.attack
+		if myBlood <= 0 then
+			currentMy:setVisible(false)
+		else
+			local currentScale = currentMy:getBone("Blood"):getScaleX()
+			local subScale = currentScale - ((currentOther.cardInfo.attack)/(currentMy.cardInfo.blood))
+			currentMy:getBone("Blood"):setScaleX(subScale)
+            currentMy:getAnimation():play("stop")
+			currentMy.dynamicBlood = currentMy.dynamicBlood - currentOther.cardInfo.attack
+		end
+
 		--如果我敌卡牌全部出战一次，则置myFightTime为true，otherFightNum重新归为1
 		if otherFightNum > table.getn(tempOtherFighters) then
  			myFightTime = true
@@ -51,29 +75,8 @@ end
 function attackEnemyBack()
 	if myFightTime then
 		currentMy:getAnimation():play("attack")
-		--计算伤害血量值，更新相关数据
-		local myBlood = currentOther.cardInfo.blood - currentMy.cardInfo.attack
-		if myBlood <= 0 then
-			currentOther:setVisible(false)
-		else
-			local currentPercent = currentOther:getChildByTag(101):getPercent()
-			local subPercent = currentPercent - ((currentMy.cardInfo.attack)/(currentOther.cardInfo.blood))*100
-			currentOther:getChildByTag(101):setPercent(subPercent)
-			currentOther.cardInfo.blood = currentOther.cardInfo.blood - currentMy.cardInfo.attack
-		end
 	elseif not myFightTime then
 		currentOther:getAnimation():play("attack")
-		--计算伤害血量值，更新相关数据
-		local otherBlood = currentMy.cardInfo.blood - currentOther.cardInfo.attack
-		if otherBlood <= 0 then
-			currentMy:setVisible(false)
-		else
-			local currentPercent = currentMy:getChildByTag(101):getPercent()
-			local subPercent = currentPercent - ((currentOther.cardInfo.attack)/(currentMy.cardInfo.blood))*100
-			cclog("%f     %f     %f ",currentPercent,currentOther.cardInfo.attack,currentMy.cardInfo.blood)
-			currentMy:getChildByTag(101):setPercent(subPercent)
-			currentMy.cardInfo.blood = currentMy.cardInfo.blood - currentOther.cardInfo.attack
-		end
 	end
 end
 
@@ -89,17 +92,17 @@ function jugleGame()
     --tempOtherFighters保存敌方Visible为true的卡牌数组，即没有死亡的卡牌
     tempOtherFighters = {}
     for _,card in pairs(otherFighters) do
-    	if card:isVisible() then
+    	if card:isVisible() then 
     		tempOtherFighters[#tempOtherFighters+1] = card
     	end
     end
 
     if table.getn(myFighters) == 0 then
-    	cclog("您胜利了！")
-    	return nil
-    elseif table.getn(tempOtherFighters) == 0 then
     	cclog("您失败了！")
-    	return nil
+    	return nil,nil
+    elseif table.getn(tempOtherFighters) == 0 then
+    	cclog("您胜利了！")
+    	return nil,nil
     end
     return tempMyFighters,tempOtherFighters
 end
@@ -108,7 +111,7 @@ end
 function fightRound()
 	--首先判断游戏结果
     local tempMyFighters,tempOtherFighters = jugleGame()
-    if tempMyFighters == nil then
+    if tempMyFighters == nil or tempOtherFighters == nil then
     	return
     end
 
@@ -172,10 +175,6 @@ function creatCards(fighterScene,cardsArray,enemyArray)
 		--myFighters
 		-- for i=1,3 do
 		-- 	local fighterCard = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
-		-- 	local cardBlood = ccui.LoadingBar:create("res/CardFighterScene/Power.png",100)
-		-- 	cardBlood:setDirection(ccui.LoadingBarType.left)
-		-- 	cardBlood:setPosition(cc.p(10,140))
-		-- 	fighterCard:addChild(cardBlood,10,101)
 		-- 	fighterCard:setVisible(false)
 		-- end
 
@@ -196,10 +195,6 @@ function creatCards(fighterScene,cardsArray,enemyArray)
 		--otherFighters
 		-- for i=4,6 do
 		-- 	local fighterCard = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
-		-- 	local cardBlood = ccui.LoadingBar:create("res/CardFighterScene/Power.png",100)
-		-- 	cardBlood:setDirection(ccui.LoadingBarType.left)
-		-- 	cardBlood:setPosition(cc.p(10,140))
-		-- 	fighterCard:addChild(cardBlood,10,101)
 		-- 	fighterCard:setVisible(false)
 		-- end
 
@@ -223,11 +218,8 @@ function creatCards(fighterScene,cardsArray,enemyArray)
 		for i=1,3 do
 			local card = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
 			card.cardInfo = {attack = 20, blood = 100}
+			card.dynamicBlood = card.cardInfo.blood
 			card:getAnimation():setFrameEventCallFunc(onFrameEvent)
-			local cardBlood = ccui.LoadingBar:create("res/CardFighterScene/Power.png",100)
-			cardBlood:setDirection(ccui.LoadingBarType.left)
-			cardBlood:setPosition(cc.p(10,140))
-			card:addChild(cardBlood,10,101)
 			myFighters[#myFighters+1] = card
 		end
 
@@ -235,11 +227,8 @@ function creatCards(fighterScene,cardsArray,enemyArray)
 		for i=4,6 do
 			local card = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
 			card.cardInfo = {attack = 20, blood = 100}
+			card.dynamicBlood = card.cardInfo.blood
 			card:getAnimation():setFrameEventCallFunc(onFrameEvent)
-			local cardBlood = ccui.LoadingBar:create("res/CardFighterScene/Power.png",100)
-			cardBlood:setDirection(ccui.LoadingBarType.left)
-			cardBlood:setPosition(cc.p(10,140))
-			card:addChild(cardBlood,10,101)
 			otherFighters[#otherFighters+1] = card
 		end
 ----------------以上为测试代码，正式资源给了之后去除----------------------
