@@ -9,7 +9,7 @@ local origin = cc.Director:getInstance():getVisibleOrigin()
 
 function tapAttackButton(sender,eventType)
 	if eventType == ccui.TouchEventType.began then
-		
+		sceneControl.changeToScene("FighterScene")
 	end
 end
 
@@ -63,7 +63,7 @@ function creatLayerHomePage()
 	local homePageLayer = cc.Layer:create()
 	-- 加载注册登录界面UI
 	homePageUI = ccs.GUIReader:getInstance():widgetFromJsonFile("res/HomePageUI_1/HomePageUI_1.json")
-
+	local addPic1 = homePageUI:getChildByTag(7):getChildByTag(1)
 	-- 绑定出击按钮触发事件
 	local attackButton = homePageUI:getChildByTag(8)
 	attackButton:addTouchEventListener(tapAttackButton)

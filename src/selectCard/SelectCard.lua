@@ -32,8 +32,8 @@ function touchListViewEvent(sender, eventType)
 end
 
 function disWarning()
-	warningLabel:setText("")
 	cc.Director:getInstance():getScheduler():unscheduleScriptEntry(scriptHandle)
+	warningLabel:setText("")
 	disWarningFlag = true
 end
 
@@ -47,13 +47,13 @@ function selectedEvent(sender,eventType)
 		end
 		if flag >3 then
 			sender:setSelectedState(false)
-			warningLabel = selectCardUI:getChildByTag(4)
-			warningLabel:setText("选择卡牌超过最大数！")
-			scriptHandle = cc.Director:getInstance():getScheduler():scheduleScriptFunc(disWarning, 0.5, false)
-			disWarningFlag = false
+			if disWarningFlag then
+				warningLabel = selectCardUI:getChildByTag(4)
+				warningLabel:setText("选择卡牌超过最大数！")
+				scriptHandle = cc.Director:getInstance():getScheduler():scheduleScriptFunc(disWarning, 0.5, false)
+				disWarningFlag = false
+			end
 		end
-    elseif eventType == ccui.CheckBoxEventType.unselected then
-        --self._displayValueLabel:setText("Unselected")
     end
 end  
 
