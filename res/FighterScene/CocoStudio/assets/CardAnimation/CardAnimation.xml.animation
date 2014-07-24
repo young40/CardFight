@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<AnimationProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>E:\NewWork\res\FighterScene\CocoStudio\assets\CardAnimation</ProjectDir>
+  <Version>1.4.0.0</Version>
+  <Resources>E:\NewWork\res\FighterScene\CocoStudio\assets\CardAnimation\Resources</Resources>
+  <Name>CardAnimation</Name>
+  <JsonFileName>CardAnimation.json</JsonFileName>
+  <JsonFolder>E:\NewWork\res\FighterScene\CocoStudio\assets\CardAnimation\Json</JsonFolder>
+  <JsonList />
+  <CanvasSize>
+    <Width>0</Width>
+    <Height>0</Height>
+  </CanvasSize>
+  <filePath>E:\NewWork\res\FighterScene\CocoStudio\assets\CardAnimation\CardAnimation.xml.animation</filePath>
+  <ProjectType>AnimationProject</ProjectType>
+  <ResRelativePath />
+  <ResourceFileList>
+    <string>CardAnimation0.plist</string>
+  </ResourceFileList>
+  <bBatchImage>true</bBatchImage>
+</AnimationProject>

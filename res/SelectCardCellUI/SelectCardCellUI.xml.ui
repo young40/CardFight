@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>E:\NewWork\res\SelectCardCellUI</ProjectDir>
+  <Version>1.4.0.0</Version>
+  <Resources>E:\NewWork\res\SelectCardCellUI\Resources</Resources>
+  <Name>SelectCardCellUI</Name>
+  <JsonFileName>SelectCardCellUI.json</JsonFileName>
+  <JsonFolder>E:\NewWork\res\SelectCardCellUI\Json</JsonFolder>
+  <JsonList>
+    <string>SelectCardCellUI_1.json</string>
+  </JsonList>
+  <CanvasSize>
+    <Width>640</Width>
+    <Height>180</Height>
+  </CanvasSize>
+  <filePath>E:\NewWork\res\SelectCardCellUI\SelectCardCellUI.xml.ui</filePath>
+  <ProjectType>UIProject</ProjectType>
+  <ResRelativePath />
+  <imageFileList />
+  <imagePngList>
+    <string>MyMobilePhone_1.png</string>
+    <string>CheckBox.png</string>
+    <string>CheckBoxFlag.png</string>
+  </imagePngList>
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson>SelectCardCellUI_1.json</CurrentUIJson>
+</UIProject>

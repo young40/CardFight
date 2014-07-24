@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>C:\Users\xinlin.zhang\Desktop\VectoryUI</ProjectDir>
+  <Version>1.4.0.0</Version>
+  <Resources>C:\Users\xinlin.zhang\Desktop\VectoryUI\Resources</Resources>
+  <Name>VectoryUI</Name>
+  <JsonFileName>VectoryUI.json</JsonFileName>
+  <JsonFolder>C:\Users\xinlin.zhang\Desktop\VectoryUI\Json</JsonFolder>
+  <JsonList>
+    <string>VectoryUI_1.json</string>
+  </JsonList>
+  <CanvasSize>
+    <Width>0</Width>
+    <Height>0</Height>
+  </CanvasSize>
+  <filePath>C:\Users\xinlin.zhang\Desktop\VectoryUI\VectoryUI.xml.ui</filePath>
+  <ProjectType>UIProject</ProjectType>
+  <ResRelativePath />
+  <imageFileList />
+  <imagePngList>
+    <string>BackGround.png</string>
+    <string>Vectory.png</string>
+    <string>Star.png</string>
+    <string>Grass.png</string>
+    <string>Confirm.png</string>
+    <string>Spoils.png</string>
+    <string>MyMobilePhone_1.png</string>
+  </imagePngList>
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson>VectoryUI_1.json</CurrentUIJson>
+</UIProject>

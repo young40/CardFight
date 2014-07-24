@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<SceneProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>E:\NewWork\res\RegisterScene\CocoStudio\ccsprojs\RegisterScene</ProjectDir>
+  <Version>1.4.0.0</Version>
+  <Resources>E:\NewWork\res\RegisterScene</Resources>
+  <Name>RegisterScene</Name>
+  <JsonFileName>RegisterScene.json</JsonFileName>
+  <JsonFolder>E:\NewWork\res\RegisterScene\CocoStudio\assets\publish</JsonFolder>
+  <JsonList />
+  <CanvasSize>
+    <Width>640</Width>
+    <Height>1136</Height>
+  </CanvasSize>
+  <filePath>E:\NewWork\res\RegisterScene\CocoStudio\ccsprojs\RegisterScene\RegisterScene.xml.scene</filePath>
+  <ProjectType>SceneProject</ProjectType>
+  <ResRelativePath>\\..\\..\\assets</ResRelativePath>
+  <JSFileList />
+  <DefaultUI_JSList />
+  <Res>E:\NewWork\res\RegisterScene\CocoStudio\assets</Res>
+</SceneProject>

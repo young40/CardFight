@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>E:\NewWork\res\SelectCardUI</ProjectDir>
+  <Version>1.4.0.0</Version>
+  <Resources>E:\NewWork\res\SelectCardUI\Resources</Resources>
+  <Name>SelectCardUI</Name>
+  <JsonFileName>SelectCardUI.json</JsonFileName>
+  <JsonFolder>E:\NewWork\res\SelectCardUI\Json</JsonFolder>
+  <JsonList>
+    <string>SelectCardUI_1.json</string>
+  </JsonList>
+  <CanvasSize>
+    <Width>640</Width>
+    <Height>1136</Height>
+  </CanvasSize>
+  <filePath>E:\NewWork\res\SelectCardUI\SelectCardUI.xml.ui</filePath>
+  <ProjectType>UIProject</ProjectType>
+  <ResRelativePath />
+  <imageFileList />
+  <imagePngList>
+    <string>BackGround.png</string>
+    <string>Confirm.png</string>
+    <string>PlayerHead.png</string>
+    <string>StrengthValueBG.png</string>
+    <string>StrengthValue.png</string>
+  </imagePngList>
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson>SelectCardUI_1.json</CurrentUIJson>
+</UIProject>
