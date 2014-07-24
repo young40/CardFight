@@ -30,13 +30,18 @@ end
 
 function creatFighterScene()
 	-- 加载战斗场景
-	local fighterScene = ccs.SceneReader:getInstance():createNodeWithSceneFile("res/CardFighterScene/publish/MainFighterScene.json")
-	local myFighters = currentUser.getFighters()
-	----------------以下为测试代码，正式资源给了之后去除----------------------
-	local otherFighters = {1}
-	----------------以上为测试代码，正式资源给了之后去除----------------------
-	--currentUser.getFighters()
+	local fighterScene = ccs.SceneReader:getInstance():createNodeWithSceneFile("res/FighterScene/Resources/publish/MainFighterScene.json")
 
+	local Checkpoint = currentUser.getCheckpoint()
+
+	local myFighters = currentUser.getFighters()
+	local otherFighters = currentUser.getEnemyCard(Checkpoint)
+-- local JSON = require "src.data.JSON"
+
+-- 	for _,card in pairs(otherFighters) do
+-- 		print(JSON:encode_pretty(card) .. "111111111111")
+-- 	end
+	
 	fighterLogic.creatCards(fighterScene,myFighters,otherFighters)
 	--------------------------------重新加载脚本函数，测试使用，发布版本删除-----------------------------------------
 	fighterScene:addChild(creatReloadLuaButton(),10)

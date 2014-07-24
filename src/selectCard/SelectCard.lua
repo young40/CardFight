@@ -12,14 +12,18 @@ local disWarningFlag = true
 
 function tapConfirmButton(sender,eventType)
 	if eventType == ccui.TouchEventType.began then
-		local fighterCars = {}
+		local fighterCars,totalCards = {},{}
 		local cardScrolls = listSelectView:getItems()
 		for _,item in pairs(cardScrolls) do
-			if item:getChildByTag(11):getSelectedState() == true then
-				fighterCars[#fighterCars+1] = item.id
+			if item:getChildByTag(3):getSelectedState() == true then
+				item.data["fighter"] = true
+				fighterCars[#fighterCars+1] = item.data
+			else
+				item.data["fighter"] = false
 			end
+			totalCards[#totalCards+1] = item.data
 		end
-		currentUser.setFighters(fighterCars)
+		currentUser.setFighters(fighterCars,totalCards)
 
 		sceneControl.changeToScene("HomePage")
 	end
@@ -41,7 +45,7 @@ function selectedEvent(sender,eventType)
     if eventType == ccui.CheckBoxEventType.selected then
        local cardScrolls,flag = listSelectView:getItems(),0
 		for _,item in pairs(cardScrolls) do
-			if item:getChildByTag(11):getSelectedState() == true then
+			if item:getChildByTag(3):getSelectedState() == true then
 				flag = flag + 1
 			end
 		end
@@ -53,27 +57,21 @@ function selectedEvent(sender,eventType)
 				scriptHandle = cc.Director:getInstance():getScheduler():scheduleScriptFunc(disWarning, 0.5, false)
 				disWarningFlag = false
 			end
+		elseif flag >0 then
+
 		end
     end
 end  
 
-function addSelectCard(texture,power,cpu,name,star,selected,id)
-	local selectCardCellUI = ccs.GUIReader:getInstance():widgetFromJsonFile("res/SelectCardCellUI_1/SelectCardCellUI_1.json")
+function addSelectCard(texture,selected,data)
+	local selectCardCellUI = ccs.GUIReader:getInstance():widgetFromJsonFile("res/SelectCardCellUI/Export/SelectCardCellUI_1.json")
 	local cardThumbnail    = selectCardCellUI:getChildByTag(2)
-	local powerValue       = selectCardCellUI:getChildByTag(4)
-	local cpuValue         = selectCardCellUI:getChildByTag(6)
-	local nameValue        = selectCardCellUI:getChildByTag(8)
-	local starValue        = selectCardCellUI:getChildByTag(10)
-	local checkBox         = selectCardCellUI:getChildByTag(11)
+	local checkBox         = selectCardCellUI:getChildByTag(3)
 
 	cardThumbnail:loadTexture(texture)
-	powerValue:setText(power)
-	cpuValue:setText(cpu)
-	nameValue:setText(name)
-	starValue:setText(star)
 	checkBox:setSelectedState(selected)
 	checkBox:addEventListenerCheckBox(selectedEvent)
-	selectCardCellUI.id = id
+	selectCardCellUI.data = data
 
     listSelectView:pushBackCustomItem(selectCardCellUI) 
 end
@@ -104,7 +102,7 @@ end
 function creatLayerSelectCard()
 	local selectCardLayer = cc.Layer:create()
 	-- 加载注册登录界面UI
-	selectCardUI = ccs.GUIReader:getInstance():widgetFromJsonFile("res/SelectCardUI_1/SelectCardUI_1.json")
+	selectCardUI = ccs.GUIReader:getInstance():widgetFromJsonFile("res/SelectCardUI/Export/SelectCardUI_1.json")
 
 	-- 确定按钮
 	local confirmButton = selectCardUI:getChildByTag(3)
@@ -114,14 +112,11 @@ function creatLayerSelectCard()
 	listSelectView = selectCardUI:getChildByTag(2)
 	listSelectView:addEventListenerListView(touchListViewEvent)
 
-	for i=1,10 do
-		addSelectCard("",80,"1GHZ","大米手机","1",false,2175021)
-	end
 	local cardList = currentUser.getCardList()
 	if cardList ~= nil then
 		for _,card in pairs(cardList) do
-		--addSelectCard(card["icon_image"],card["life"],card["attack"],card["name"],card["star"],card["fighter"],card["id"])
-	end
+			addSelectCard(card["icon_image"],card["fighter"],card)
+		end
 	end
 
 	selectCardLayer:addChild(selectCardUI)

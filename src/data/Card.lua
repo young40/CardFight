@@ -5,14 +5,11 @@ local JSON = require "src.data.JSON"
 function cardsForNewUser()
     local cards = {}
 
-    local card = _getNewCard(0)
+    local card = _getNewCard()
 
-    setCardAsFighter(card, true)
+    setCardAsFighter(card[1], true)
 
-    cards[#cards + 1] = card
---    print(JSON:encode_pretty(cards))
-
-    return cards
+    return card
 end
 
 function getCardById(list, id)
@@ -27,11 +24,14 @@ end
 
 function setCardAsFighter(card, flag)
     card["fighter"] = flag
-    return card
 end
 
 function getNewCard()
-    return _getNewCard(0)
+    return _getNewCard()
+end
+
+function getEnemyCard()
+    return _getEnemyCard()
 end
 
 function _getCardDatabase()
@@ -44,13 +44,12 @@ function _getCardDatabase()
     return data
 end
 
-function _getNewCard(id_offset)
-    local data = _getCardDatabase()[1]
+function _getNewCard()
+    local data = _getCardDatabase()["MyMobilePhone"]
+    return data
+end
 
-    local id = id_offset + os.time() - 1400000000;
-
-    data["id"] = id
-    data["fighter"] = false
-
+function _getEnemyCard()
+    local data = _getCardDatabase()["EnemyMobilePhone"]
     return data
 end

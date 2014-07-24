@@ -1,5 +1,7 @@
 module ("src.fighterScene.FighterLogic",package.seeall)
 
+local sceneControl = require "src.common.SceneControl"
+
 local visibleSize       = cc.Director:getInstance():getVisibleSize()
 local origin            = cc.Director:getInstance():getVisibleOrigin()
 local myFighters        = {}--静态初始我方的卡牌参展阵容
@@ -39,7 +41,7 @@ function onFrameEvent( bone,evt,originFrameIndex,currentFrameIndex)
 			local currentScale = currentOther:getBone("Blood"):getScaleX()
 			local subScale = currentScale - ((currentMy.cardInfo.attack)/(currentOther.cardInfo.blood))
 			currentOther:getBone("Blood"):setScaleX(subScale)
-            currentOther:getAnimation():play("stop")
+            currentOther:getAnimation():play("Stop")
 			currentOther.dynamicBlood = currentOther.dynamicBlood - currentMy.cardInfo.attack
 		end
 
@@ -59,7 +61,7 @@ function onFrameEvent( bone,evt,originFrameIndex,currentFrameIndex)
 			local currentScale = currentMy:getBone("Blood"):getScaleX()
 			local subScale = currentScale - ((currentOther.cardInfo.attack)/(currentMy.cardInfo.blood))
 			currentMy:getBone("Blood"):setScaleX(subScale)
-            currentMy:getAnimation():play("stop")
+            currentMy:getAnimation():play("Stop")
 			currentMy.dynamicBlood = currentMy.dynamicBlood - currentOther.cardInfo.attack
 		end
 
@@ -74,9 +76,9 @@ end
 --当卡牌移动到目标卡牌位置的回调，当前卡牌播放攻击动画
 function attackEnemyBack()
 	if myFightTime then
-		currentMy:getAnimation():play("attack")
+		currentMy:getAnimation():play("MyAttack")
 	elseif not myFightTime then
-		currentOther:getAnimation():play("attack")
+		currentOther:getAnimation():play("EnemyAttack")
 	end
 end
 
@@ -98,10 +100,11 @@ function jugleGame()
     end
 
     if table.getn(myFighters) == 0 then
-    	cclog("您失败了！")
+    	--cclog("您失败了！")
     	return nil,nil
     elseif table.getn(tempOtherFighters) == 0 then
-    	cclog("您胜利了！")
+    	--cclog("you win！")
+    	sceneControl.changeToScene("VectoryScene")
     	return nil,nil
     end
     return tempMyFighters,tempOtherFighters
@@ -173,65 +176,46 @@ end
 function creatCards(fighterScene,cardsArray,enemyArray)
 	if cardsArray ~= nil and enemyArray ~= nil then
 		--myFighters
-		-- for i=1,3 do
-		-- 	local fighterCard = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
-		-- 	fighterCard:setVisible(false)
-		-- end
+		for i=1,3 do
+			local fighterCard = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
+			fighterCard:setVisible(false)
+		end
 
-		-- local cardNum = 0
-		-- myFighters = {}
-		-- for _,card in pairs(cardsArray) do
-		-- cardNum = cardNum + 1
-		-- local cardNode = fighterScene:getChildByTag(cardNum):getComponent("CCArmature"):getNode()
-		-- cardNode.card = card
-		-- cardNode:getAnimation():setFrameEventCallFunc(onFrameEvent)
-		-- myFighters[#myFighters+1] = cardNode
-		-- local skin = ccs.Skin:createWithSpriteFrameName(card["big_image"])
-		-- cardNode:setVisible(true)
-  --       cardNode:getBone("Card"):addDisplay(skin,1)
-  --       cardNode:getBone("Card"):changeDisplayWithIndex(1,true)
-		-- end
+		local cardNum = 0
+		myFighters = {}
+		for _,card in pairs(cardsArray) do
+			cardNum = cardNum + 1
+			local cardNode = fighterScene:getChildByTag(cardNum):getComponent("CCArmature"):getNode()
+			cardNode.cardInfo = {attack = card.attack, blood = card.life}
+			cardNode.dynamicBlood = cardNode.cardInfo.blood
+			cardNode:getAnimation():setFrameEventCallFunc(onFrameEvent)
+			myFighters[#myFighters+1] = cardNode
+			local skin = ccs.Skin:createWithSpriteFrameName(card["big_image"])
+			cardNode:setVisible(true)
+        	cardNode:getBone("Card"):addDisplay(skin,1)
+        	cardNode:getBone("Card"):changeDisplayWithIndex(1,true)
+		end
 
 		--otherFighters
-		-- for i=4,6 do
-		-- 	local fighterCard = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
-		-- 	fighterCard:setVisible(false)
-		-- end
-
-		-- local cardNum = 4
-		-- otherFighters = {}
-		-- for _,card in pairs(enemyArray) do
-		-- cardNum = cardNum + 1
-		-- local cardNode = fighterScene:getChildByTag(cardNum):getComponent("CCArmature"):getNode()
-		-- cardNode.card = card
-		-- cardNode:getAnimation():setFrameEventCallFunc(onFrameEvent)
-		-- otherFighters[#otherFighters+1] = cardNode
-		-- local skin = ccs.Skin:createWithSpriteFrameName(card["big_image"])
-		-- cardNode:setVisible(true)
-  --       cardNode:getBone("Card"):addDisplay(skin,1)
-  --       cardNode:getBone("Card"):changeDisplayWithIndex(1,true)
-		-- end
-
-
-----------------以下为测试代码，正式资源给了之后去除----------------------
-		myFighters = {}
-		for i=1,3 do
-			local card = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
-			card.cardInfo = {attack = 20, blood = 100}
-			card.dynamicBlood = card.cardInfo.blood
-			card:getAnimation():setFrameEventCallFunc(onFrameEvent)
-			myFighters[#myFighters+1] = card
-		end
-
-		otherFighters = {}
 		for i=4,6 do
-			local card = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
-			card.cardInfo = {attack = 20, blood = 100}
-			card.dynamicBlood = card.cardInfo.blood
-			card:getAnimation():setFrameEventCallFunc(onFrameEvent)
-			otherFighters[#otherFighters+1] = card
+			local fighterCard = fighterScene:getChildByTag(i):getComponent("CCArmature"):getNode()
+			fighterCard:setVisible(false)
 		end
-----------------以上为测试代码，正式资源给了之后去除----------------------
+
+		local cardNum = 3
+		otherFighters = {}
+		for _,card in pairs(enemyArray) do
+			cardNum = cardNum + 1
+			local cardNode = fighterScene:getChildByTag(cardNum):getComponent("CCArmature"):getNode()
+			cardNode.cardInfo = {attack = card.attack, blood = card.life}
+			cardNode.dynamicBlood = cardNode.cardInfo.blood
+			cardNode:getAnimation():setFrameEventCallFunc(onFrameEvent)
+			otherFighters[#otherFighters+1] = cardNode
+			local skin = ccs.Skin:createWithSpriteFrameName(card["big_image"])
+			cardNode:setVisible(true)
+        	cardNode:getBone("Card"):addDisplay(skin,1)
+        	cardNode:getBone("Card"):changeDisplayWithIndex(1,true)
+		end
 
 		--进入战斗场景延迟1秒开始战斗流程
 		scriptHandle = cc.Director:getInstance():getScheduler():scheduleScriptFunc(beginFight, 1.0, false)

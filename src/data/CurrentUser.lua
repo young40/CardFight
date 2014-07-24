@@ -38,12 +38,12 @@ function getName()
     return getData()["name"]
 end
 
-function getAvatar()
-    return getData()["avatar"]
+function getCheckpoint()
+    return getData()["Checkpoint"]
 end
 
-function setAvatar(value)
-    _setData("avatar", value)
+function setCheckpoint(value)
+    _setData("Checkpoint", value)
 end
 
 function getGold()
@@ -67,49 +67,12 @@ function getCardList()
 end
 
 function getFighters()
-    local cards =  {}
-
-    for key, card in ipairs(getCardList()) do
-        for key_, id in ipairs(getData()["fighter"]) do
-            if card["id"] == id then
-                cards[#cards + 1] = card
-            end
-        end
-    end
-
-    return cards
+    return getData()["fighter"]
 end
 
-function setFighters(ids)
-    local fIds = {}
-
-    for key, id in ipairs(ids) do
-        local card = CARD.getCardById(getCardList(), id)
-        if (card) then
-            fIds[#fIds + 1] = id
-        end
-    end
-
-    if #fIds == 0 then
-        return false
-    end
-
-    local cards = {}
-    for key, card in ipairs(getCardList()) do
-        CARD.setCardAsFighter(card, false)
-
-        for key_, id in ipairs(fIds) do 
-            if (card["id"] == id) then
-                CARD.setCardAsFighter(card, true)
-            end
-        end
-
-        cards[#cards + 1] = card
-    end
-    
-    _setData("fighter", fIds)
+function setFighters(fighters,cards)
+    _setData("fighter", fighters)
     _setData("cards", cards)
-
     return true
 end
 
@@ -121,16 +84,20 @@ function getNewCard()
     _setData("cards", cards)
 end
 
+function getEnemyCard(id)
+    return CARD.getEnemyCard()[id]["1"]
+end
+
 function _getNewUser()
     local user = userlist.getUserById(getCurrentId())
     
     local data = {}
 
-    data["id"]      = user["id"]
-    data["name"]    = user["name"]
-    data["avatar"]  = "avatar.png" 
-    data["gold"]    = 100
-    data["level"]   = 1
+    data["id"]         = user["id"]
+    data["name"]       = user["name"]
+    data["gold"]       = 100
+    data["level"]      = 1
+    data["Checkpoint"] = 1
 
     local cards = CARD.cardsForNewUser()
     data["cards"]   = cards
