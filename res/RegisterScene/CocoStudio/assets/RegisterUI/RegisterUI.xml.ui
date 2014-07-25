@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>E:\NewWork\res\RegisterScene\CocoStudio\assets\RegisterUI</ProjectDir>
+  <Version>1.4.0.0</Version>
+  <Resources>E:\NewWork\res\RegisterScene\CocoStudio\assets\RegisterUI\Resources</Resources>
+  <Name>RegisterUI</Name>
+  <JsonFileName>RegisterUI.json</JsonFileName>
+  <JsonFolder>E:\NewWork\res\RegisterScene\CocoStudio\assets\RegisterUI\Json</JsonFolder>
+  <JsonList>
+    <string>RegisterUI_1.json</string>
+  </JsonList>
+  <CanvasSize>
+    <Width>640</Width>
+    <Height>1136</Height>
+  </CanvasSize>
+  <filePath>E:\NewWork\res\RegisterScene\CocoStudio\assets\RegisterUI\RegisterUI.xml.ui</filePath>
+  <ProjectType>UIProject</ProjectType>
+  <ResRelativePath />
+  <imageFileList />
+  <imagePngList>
+    <string>BackGround.png</string>
+    <string>InputBG.png</string>
+    <string>PlayButton.png</string>
+  </imagePngList>
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson>RegisterUI_1.json</CurrentUIJson>
+</UIProject>

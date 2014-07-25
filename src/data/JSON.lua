@@ -649,9 +649,9 @@ local function object_or_array(self, T, etc)
       -- It's not ideal, but we'll turn the numbers into strings so that we can at least create a JSON object.
       --
 
-      if JSON.noKeyConversion then
-         self:onEncodeError("a table with both numeric and string keys could be an object or array; aborting", etc)
-      end
+      --if JSON.noKeyConversion then
+         --self:onEncodeError("a table with both numeric and string keys could be an object or array; aborting", etc)
+      --end
 
       --
       -- Have to make a shallow copy of the source table so we can remap the numeric keys to be strings

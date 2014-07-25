@@ -1,1 +1,15 @@
-[{"name":"大米","level":1,"star":1,"attack":100,"life":1000,"big_image":"null","icon_image":"null","description":"大米手机"},{"name":"五星","level":1,"star":1,"attack":120,"life":1200,"big_image":"null","icon_image":"null","description":"五星手机"},{"name":"上兴","level":1,"star":1,"attack":100,"life":1100,"big_image":"null","icon_image":"null","description":"上兴手机"}]
+{
+	"MyMobilePhone":[
+		{"name":"红星","id":1,"star":1,"attack":100,"life":500,"big_image":"MyMobilePhone_1.png","icon_image":"MyMobilePhone_1.png","description":"红星手机","fighter":false},
+		{"name":"大黄","id":2,"star":1,"attack":100,"life":500,"big_image":"MyMobilePhone_2.png","icon_image":"MyMobilePhone_2.png","description":"大黄手机","fighter":false},
+		{"name":"小灰","id":3,"star":1,"attack":100,"life":500,"big_image":"MyMobilePhone_3.png","icon_image":"MyMobilePhone_3.png","description":"小灰手机","fighter":false},
+		{"name":"小灰","id":4,"star":1,"attack":100,"life":500,"big_image":"MyMobilePhone_3.png","icon_image":"MyMobilePhone_3.png","description":"小灰手机","fighter":false}
+	],
+	"EnemyMobilePhone":[{
+		"1":[
+			{"name":"粉星","id":1,"star":1,"attack":80,"life":500,"big_image":"EnemyMobilePhone_1.png","icon_image":"null","description":"粉星手机"},
+			{"name":"大黄","id":2,"star":1,"attack":80,"life":500,"big_image":"EnemyMobilePhone_2.png","icon_image":"null","description":"大黄手机"},
+			{"name":"粉星","id":3,"star":1,"attack":80,"life":500,"big_image":"EnemyMobilePhone_3.png","icon_image":"null","description":"粉星手机"}
+		]
+	}]
+}

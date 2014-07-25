@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<SceneProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>E:\NewWork\res\FighterScene\CocoStudio\ccsprojs\MainFighterScene</ProjectDir>
+  <Version>1.4.0.0</Version>
+  <Resources>E:\NewWork\res\FighterScene</Resources>
+  <Name>MainFighterScene</Name>
+  <JsonFileName>MainFighterScene.json</JsonFileName>
+  <JsonFolder>E:\NewWork\res\FighterScene\CocoStudio\assets\publish</JsonFolder>
+  <JsonList />
+  <CanvasSize>
+    <Width>640</Width>
+    <Height>1136</Height>
+  </CanvasSize>
+  <filePath>E:\NewWork\res\FighterScene\CocoStudio\ccsprojs\MainFighterScene\MainFighterScene.xml.scene</filePath>
+  <ProjectType>SceneProject</ProjectType>
+  <ResRelativePath>\\..\\..\\assets</ResRelativePath>
+  <JSFileList />
+  <DefaultUI_JSList />
+  <Res>E:\NewWork\res\FighterScene\CocoStudio\assets</Res>
+</SceneProject>
