@@ -104,6 +104,7 @@ function main()
 	cc.FileUtils:getInstance():addSearchPath("res/SelectCardCellUI/Resources")
 	
 	cc.FileUtils:getInstance():addSearchPath("src")
+	cc.Director:getInstance():getOpenGLView():setDesignResolutionSize(640,1136,0);
 
     -- 运行场景
     local sceneGame = cc.Scene:create()
