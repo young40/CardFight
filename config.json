@@ -4,7 +4,7 @@
     "name": "CardFight",
     "width": 1136,
     "height": 640,
-    "entry": "src/main.lua",
+    "entry": "src/register/Register.lua",
     "consolePort": 6010,
     "debugPort": 0
   },

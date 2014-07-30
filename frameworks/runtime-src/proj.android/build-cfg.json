@@ -8,15 +8,34 @@
     "copy_resources": [
         {
             "from": "../../../src",
-            "to": "src"
+            "to": "src",
+            "exclude": [
+                "*.gz"
+            ]
         },
         {
             "from": "../../../res",
-            "to": "res"
-        },
+            "to": "res",
+            "exclude": [
+                "*.gz"
+            ]
+        }
+    ],
+    "must_copy_resources": [
         {
             "from": "../../cocos2d-x/cocos/scripting/lua-bindings/script",
             "to": ""
+        },
+        {
+            "from": "../../../config.json",
+            "to": ""
+        },
+        {
+            "from": "../../cocos2d-x/external/lua/luasocket",
+            "to": "",
+            "include": [
+                "*.lua"
+            ]
         }
     ]
 }
