@@ -37,7 +37,7 @@ end
 
 function disWarning()
 	cc.Director:getInstance():getScheduler():unscheduleScriptEntry(scriptHandle)
-	warningLabel:setText("")
+	warningLabel:setString("")
 	disWarningFlag = true
 end
 
@@ -53,7 +53,7 @@ function selectedEvent(sender,eventType)
 			sender:setSelectedState(false)
 			if disWarningFlag then
 				warningLabel = selectCardUI:getChildByTag(4)
-				warningLabel:setText("选择卡牌超过最大数！")
+				warningLabel:setString("选择卡牌超过最大数！")
 				scriptHandle = cc.Director:getInstance():getScheduler():scheduleScriptFunc(disWarning, 0.5, false)
 				disWarningFlag = false
 			end

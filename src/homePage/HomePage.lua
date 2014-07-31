@@ -46,7 +46,7 @@ function creatLayerHomePage()
 	attackButton:addTouchEventListener(tapAttackButton)
 	-- 更新金币数量
 	local goldCoinNum = homePageUI:getChildByTag(6)
-	goldCoinNum:setText("" .. currentUser.getGold())
+	goldCoinNum:setString("" .. currentUser.getGold())
 	-- 更新体力值
 	local strengthValue = homePageUI:getChildByTag(9):getChildByTag(3)
 	strengthValue:setPercent(100)
