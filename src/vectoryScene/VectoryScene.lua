@@ -10,6 +10,10 @@ function tapConfirmButton()
 end
 
 function creatVectoryScene()
+    card = currentUser.getNewCard()
+    
+    print(card)
+    
 	-- 加载胜利场景
 	local vectoryScene = ccs.SceneReader:getInstance():createNodeWithSceneFile("res/VectoryScene/Resources/publish/VectoryScene.json")
 	local confirmButton = vectoryScene:getChildByTag(2):getComponent("GUIComponent"):getNode():getChildByTag(7)

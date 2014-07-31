@@ -78,10 +78,13 @@ end
 
 function getNewCard()
     local cards = getCardList()
-
-    cards[#cards + 1] = CARD.getNewCard()
+    local card = CARD.getNewCard()
+    
+    cards[#cards + 1] = card
     
     _setData("cards", cards)
+    
+    return card
 end
 
 function getEnemyCard(id)
