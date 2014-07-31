@@ -76,29 +76,6 @@ function addSelectCard(texture,selected,data)
     listSelectView:pushBackCustomItem(selectCardCellUI) 
 end
 
---------------------------------重新加载脚本函数，测试使用，发布版本删除-----------------------------------------
-function creatReloadLuaButton()
-	local reloadButton = ccui.Button:create("res/reloadLua.png","res/reloadLua.png","res/reloadLua.png")
-	reloadButton:addTouchEventListener(reloadLua)
-	reloadButton:setPosition(cc.p(origin.x + visibleSize.width * 0.03,origin.y + visibleSize.height * 0.98))
-
-	return reloadButton
-end
-
-function reloadLua(sender,eventType)
-	if eventType == ccui.TouchEventType.began then
-		local loadedModule = package.loaded
-		
-		for moduleName,_ in pairs(loadedModule) do
-			if string.find(moduleName,"src.") ~= nil then
-				package.loaded[moduleName] = nil  
-    			require(moduleName)
-    		end
-    	end
-	end
-end
---------------------------------重新加载脚本函数，测试使用，发布版本删除-----------------------------------------
-
 function creatLayerSelectCard()
 	local selectCardLayer = cc.Layer:create()
 	-- 加载注册登录界面UI
@@ -120,9 +97,6 @@ function creatLayerSelectCard()
 	end
 
 	selectCardLayer:addChild(selectCardUI)
-	--------------------------------重新加载脚本函数，测试使用，发布版本删除-----------------------------------------
-	selectCardLayer:addChild(creatReloadLuaButton())
-	--------------------------------重新加载脚本函数，测试使用，发布版本删除-----------------------------------------
 	
 	return selectCardLayer
 end 
