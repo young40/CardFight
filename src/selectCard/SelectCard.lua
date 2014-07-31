@@ -70,7 +70,7 @@ function addSelectCard(texture,selected,data)
 
 	cardThumbnail:loadTexture(texture)
 	checkBox:setSelectedState(selected)
-	checkBox:addEventListenerCheckBox(selectedEvent)
+	checkBox:addEventListener(selectedEvent)
 	selectCardCellUI.data = data
 
     listSelectView:pushBackCustomItem(selectCardCellUI) 
@@ -87,7 +87,7 @@ function creatLayerSelectCard()
 
 	-- 添加卡牌列表项
 	listSelectView = selectCardUI:getChildByTag(2)
-	listSelectView:addEventListenerListView(touchListViewEvent)
+	listSelectView:addEventListener(touchListViewEvent)
 
 	local cardList = currentUser.getCardList()
 	if cardList ~= nil then
